@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Story - John Kendric</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #00d4ff;
+            --primary-dark: #0099cc;
+            --bg-dark: #0a0a0a;
+            --bg-card: #151515;
+            --text-white: #ffffff;
+            --text-gray: #a0a0a0;
+            --text-light: #cccccc;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-white);
+            line-height: 1.8;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-white);
+            text-decoration: none;
+        }
+
+        .nav-logo span {
+            color: var(--primary);
+        }
+
+        .back-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 10px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: var(--primary);
+            color: var(--bg-dark);
+            transform: translateX(-5px);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 120px 20px 60px;
+        }
+
+        /* Header Section */
+        .page-header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 40px 0;
+            border-bottom: 2px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .page-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-subtitle {
+            color: var(--text-gray);
+            font-size: 1.2rem;
+        }
+
+        /* Story Content */
+        .story-section {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 50px;
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            margin-bottom: 40px;
+        }
+
+        .story-text {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            line-height: 2;
+        }
+
+        .story-text p {
+            margin-bottom: 25px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(0, 153, 204, 0.1) 100%);
+            border-left: 4px solid var(--primary);
+            padding: 30px;
+            border-radius: 0 15px 15px 0;
+            margin: 30px 0;
+        }
+
+        .highlight-box p {
+            color: var(--text-white);
+            font-weight: 500;
+            margin: 0;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            margin: 40px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--primary) 0%, var(--primary-dark) 100%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            padding-left: 30px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -36px;
+            top: 5px;
+            width: 15px;
+            height: 15px;
+            background: var(--primary);
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+
+        .timeline-date {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .timeline-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .timeline-desc {
+            color: var(--text-gray);
+        }
+
+        /* Skills Grid */
+        .skills-section {
+            margin-top: 40px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            color: var(--primary);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .skill-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: var(--bg-dark);
+            margin-bottom: 15px;
+        }
+
+        .skill-name {
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .skill-desc {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Quote Section */
+        .quote-section {
+            text-align: center;
+            padding: 60px 40px;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.05) 0%, rgba(0, 153, 204, 0.05) 100%);
+            border-radius: 20px;
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            margin: 40px 0;
+        }
+
+        .quote-text {
+            font-size: 1.5rem;
+            font-style: italic;
+            color: var(--text-white);
+            margin-bottom: 20px;
+        }
+
+        .quote-author {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 50px;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid rgba(0, 212, 255, 0.1);
+        }
+
+        .cta-title {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .cta-text {
+            color: var(--text-gray);
+            margin-bottom: 30px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            background: var(--primary);
+            color: var(--bg-dark);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--bg-dark);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(0, 212, 255, 0.1);
+            margin-top: 60px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .story-section {
+                padding: 30px 20px;
+            }
+
+            .timeline {
+                padding-left: 20px;
+            }
+
+            .timeline-item {
+                padding-left: 20px;
+            }
+
+            .timeline-item::before {
+                left: -26px;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+<base target="_blank">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-logo">Port<span>folio.</span></a>
+        <a href="index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1 class="page-title">My Story as an Frontend Developer</h1>
+            <p class="page-subtitle">From first line of code to where I am today</p>
+        </div>
+
+        <!-- Story Content -->
+        <div class="story-section">
+            <div class="story-text">
+                <p>
+                    I didn't start out as a developer. I was just someone who loved solving puzzles and making things look good. My journey began when I stumbled upon my first line of HTML while trying to customize a profile page. That small spark turned into late nights learning CSS, countless YouTube tutorials, and the magical moment when I wrote my first JavaScript function that actually worked.
+                </p>
+
+                <div class="highlight-box">
+                    <p>"The best code is invisible—it just works, beautifully."</p>
+                </div>
+
+                <p>
+                    Over the years, I've grown from copying code snippets to building complete web applications from scratch. I've worked with startups burning with fresh ideas and agencies crafting digital experiences for brands worldwide. Every project taught me something new — whether it was mastering a new framework, optimizing performance, or understanding what users truly need.
+                </p>
+
+                <p>
+                    What drives me? It's that moment when design meets functionality. When a button doesn't just click, but feels satisfying. When a page doesn't just load, but flows beautifully. I believe the best technology is the kind you don't notice because it simply works.
+                </p>
+            </div>
+
+            <!-- Timeline -->
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2025</div>
+                    <div class="timeline-title">The Beginning</div>
+                    <div class="timeline-desc">Wrote my first line of HTML. Fell in love with the instant gratification of seeing code become visual.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2026</div>
+                    <div class="timeline-title">First Freelance Gig</div>
+                    <div class="timeline-desc">Built my first paid website. Learned that client communication is just as important as clean code.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2027</div>
+                    <div class="timeline-title">Joined a Startup</div>
+                    <div class="timeline-desc">Worked in a fast-paced environment. Learned React, Node.js, and how to ship features under pressure.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2028 - Present</div>
+                    <div class="timeline-title">Senior Developer</div>
+                    <div class="timeline-desc">Leading projects, mentoring juniors, and constantly pushing the boundaries of what's possible on the web.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Skills Section -->
+        <div class="story-section">
+            <div class="skills-section">
+                <h2 class="section-title"><i class="fas fa-code"></i> What I Do Best</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="fas fa-laptop-code"></i></div>
+                        <div class="skill-name">Frontend Development</div>
+                        <div class="skill-desc">React, Vue, HTML/CSS, JavaScript — bringing designs to life with clean, efficient code.</div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="fas fa-paint-brush"></i></div>
+                        <div class="skill-name">UI/UX Design</div>
+                        <div class="skill-desc">Creating intuitive, beautiful interfaces that users love to interact with.</div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="fas fa-tachometer-alt"></i></div>
+                        <div class="skill-name">Performance</div>
+                        <div class="skill-desc">Optimizing load times, animations, and overall user experience for speed.</div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="fas fa-mobile-alt"></i></div>
+                        <div class="skill-name">Responsive Design</div>
+                        <div class="skill-desc">Building websites that look and work perfectly on every device size.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quote Section -->
+        <div class="quote-section">
+            <p class="quote-text">"I'm always learning, always building, and always looking for the next challenge."</p>
+            <p class="quote-author">— Jhon Kenieth Amarila</p>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <h2 class="cta-title">Let's Build Something Together</h2>
+            <p class="cta-text">I'm always looking for the next challenge, the next project, and the next opportunity to create something meaningful.</p>
+            <div class="cta-buttons">
+                <a href="index.html#contact" class="btn">Get In Touch</a>
+                <a href="cv.html" class="btn btn-outline">View My CV</a>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>© 2026 Jhon Kenieth Amarila | Built with <i class="fas fa-heart" style="color: var(--primary);"></i> and lots of coffee</p>
+        </footer>
+    </div>
+</body>
+</html>
